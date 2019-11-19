@@ -21,7 +21,7 @@ use warnings;
 use Foswiki::Func ();
 use CGI::Session ();
 
-our $VERSION = '0.10';
+our $VERSION = '1.00';
 our $RELEASE = '19 Nov 2019';
 our $SHORTDESCRIPTION = 'Limit the number of open sessions per users';
 our $NO_PREFS_IN_TOPIC = 1;
