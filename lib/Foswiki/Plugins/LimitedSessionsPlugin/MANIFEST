@@ -1,0 +1,4 @@
+!noci
+data/System/LimitedSessionsPlugin.txt 0644
+lib/Foswiki/Plugins/LimitedSessionsPlugin/DEPENDENCIES 0644
+lib/Foswiki/Plugins/LimitedSessionsPlugin.pm 0644
