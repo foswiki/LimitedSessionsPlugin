@@ -1,6 +1,6 @@
 # Plugin for Foswiki - The Free and Open Source Wiki, https://foswiki.org/
 #
-# LimitedSessionsPlugin is Copyright (C) 2019 Michael Daum http://michaeldaumconsulting.com
+# LimitedSessionsPlugin is Copyright (C) 2019-2020 Michael Daum http://michaeldaumconsulting.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -21,8 +21,8 @@ use warnings;
 use Foswiki::Func ();
 use CGI::Session ();
 
-our $VERSION = '1.00';
-our $RELEASE = '19 Nov 2019';
+our $VERSION = '1.01';
+our $RELEASE = '26 Oct 2020';
 our $SHORTDESCRIPTION = 'Limit the number of open sessions per users';
 our $NO_PREFS_IN_TOPIC = 1;
 our $core;
@@ -39,6 +39,13 @@ sub initPlugin {
 sub checkSessions {
 
   _writeDebug("called checkSessions");
+
+  my $context = Foswiki::Func::getContext();
+  return if $context->{dav}; # don't do it in webdav mode
+
+  if (TRACE) {
+    #_writeDebug($_) foreach sort keys %$context;
+  }
 
   my $sessionDir = "$Foswiki::cfg{WorkingDir}/tmp";
   return unless -d $sessionDir;
